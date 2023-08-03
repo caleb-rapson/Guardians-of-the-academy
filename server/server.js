@@ -54,8 +54,7 @@ server.get('/threads', async (req, res) => {
     thread.comments = thread.comments.length
     return thread
   })
-  console.log(threadsArr)
-  //   res.render('threads', threadsArr)
+  res.render('threads', threadsArr)
 })
 
 // GET '/threads/:id'
