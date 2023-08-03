@@ -1,23 +1,12 @@
 body {
-  background-color: bisque;
-  border-style: groove;
-  border-width: 15pt;
-  border-color: darkslateblue;
+  background-color: darkgrey;
+  border-width: 10pt;
+  border-style: ridge;
+  border-color: darkcyan;
 }
 
 header {
-  background-color: darkslateblue;
-}
-
-h1 {
-  text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 70pt;
-  margin: 20pt;
-}
-
-main {
-
+  
 }
 
 h2 {
@@ -29,5 +18,29 @@ ul {
 }
 
 footer {
+
+}
+
+.puppy {
+
+}
+
+.img-circle {
+
+}
+
+.form {
+
+}
+
+input {
+
+}
+
+.container {
+
+}
+
+.puppy-list {
 
 }
