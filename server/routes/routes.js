@@ -3,15 +3,16 @@ import { read } from 'node:fs';
 import { readFile, writeFile } from 'node:fs/promises';
 import Path from 'node:path';
 import { getThreads } from '../utils.js'
-import server from '../server.js'
 
 const router = express.Router()
-server.get('/', async (req, res) => {
+
+router.get('/', async (req, res) => {
     const data = await getThreads()
-    const threadsArr = data.threads.map((thread) => {
+    const threadsArr = {threads: [...data.threads.map((thread) => {
         thread.comments = thread.comments.length
         return thread
-    })
+    })]}
+    console.log(threadsArr)
     res.render('threads', threadsArr)
 })
 
