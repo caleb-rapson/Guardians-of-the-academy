@@ -30,6 +30,9 @@ server.set('views', Path.resolve('server/views'))
         // HOME PAGE, button to go to threads.
         // BUTTON -> go to threads list ('/threads')
         // render('home') -- 'FIGMA SCREEN 1'
+       server.get('/', (req, res) => {
+        res.render('home')
+       })
 
 // THREADS ROUTER // 
     // GET '/threads'
