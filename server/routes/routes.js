@@ -2,18 +2,40 @@ import express from 'express';
 import { read } from 'node:fs';
 import { readFile, writeFile } from 'node:fs/promises';
 import Path from 'node:path';
-import { getThreads } from '../utils.js'
-import server from '../server.js'
 
 const router = express.Router()
-server.get('/', async (req, res) => {
-    const data = await getThreads()
-    const threadsArr = data.threads.map((thread) => {
-        thread.comments = thread.comments.length
-        return thread
-    })
-    res.render('threads', threadsArr)
+// router.get('/', (req, res) => {
+//     res.render('home');
+// });
+
+// Home page
+
+router.get('/', async (req, res) => {
+    try {
+        res.render('home')
+    } catch (err) {
+        res.send(`This page is not working. Error: ${err}`)
+    }
 })
 
+
+// Thread homepage with all threads
+router.get('/threads', async (req, res) => {
+    try {
+        res.render('home')
+    } catch (err) {
+        res.send(`This page is not working. Error: ${err}`)
+    }
+})
+
+
+// Unique thread
+// router.get('/threads/:id', async (req, res) => {
+//     try {
+//         res.render('home')
+//     } catch (err) {
+//         res.send(`This page is not working. Error: ${err}`)
+//     }
+// })
 
 export default router;
