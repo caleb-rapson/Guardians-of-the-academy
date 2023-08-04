@@ -1,64 +1,23 @@
-{{!-- <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Pupparazzi</title>
-    <link href="https://fonts.googleapis.com/css?family=Spirax" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="/main.css">
-    <link rel="icon" href="data:,">
-  </head>
-  <body>
-    <div class="app">
-      <h1 class="title">Pupparazzi</h1>
-      <a class="nav" href="/">Home</a>
-      {{!-- {{{body}}}
-    </div>
-  </body> --}}
-</html>
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Message Board - Home</title>
-  <!-- Add CSS stylesheet here -->
+  <meta charset="utf-8">
+  <title>Thread Home</title>
+  <link href="https://fonts.googleapis.com/css?family=Spirax" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel="stylesheet" href="/main.css">
+  <link rel="icon" href="data:,">
 </head>
 
 <body>
-  <!-- Header -->
-  <header>
-    <h1>Message Board</h1>
-  </header>
-
-  <!-- Main Content -->
-  <main>
-    <h2>Threads</h2>
-    <ul>
-      <!-- Handlebar + route for coding thread -->
-      <li>
-        <a href="/coding">Coding</a>
-      </li>
-
-      <!-- Handlebar + route for bunnies thread -->
-      <li>
-        <a href="/bunnies">Bunnies</a>
-      </li>
-
-      <!-- Handlebar + route for food thread -->
-      <li>
-        <a href="/food">Food</a>
-      </li>
-    </ul>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <p>Message Board  2023</p>
-  </footer>
-
+  <div class="app">
+    {{>header}}
+    {{{body}}}
+  </div>
+  {{>footer}}
 </body>
 
-</html> 
+
+</html>
+
