@@ -5,3 +5,14 @@
   <div>Owner: {{owner}}</div>
   <a href="/puppies/{{id}}/edit">Edit</a>
 </div>
+
+
+<div class="container">
+  {{#each threads}}
+  <div class="PUT RELEVANT CLASS HERE">
+    <a href="/threads/{{id}}"><img class="Not sure if needed?" src="{{image}}" alt="{{name}}"></a>
+  </div>
+  {{/each}}
+</div>
+{{!-- home page design
+basic page with only one link sending to the "threads page". Contain no information other then 'HOME' and link --}}
