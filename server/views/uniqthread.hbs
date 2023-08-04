@@ -1,0 +1,12 @@
+<h1>{{title}}</h1>
+<h2>Likes: {{likes}}</h2>
+
+<ul>
+    {{#each comments}}
+    <li>
+        {{name}} - {{date}}<br>
+        {{message}}
+    </li>
+    {{/each}}
+</ul>
+{{!-- <h2>{{comments}}</h2> --}}

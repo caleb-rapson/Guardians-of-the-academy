@@ -6,6 +6,7 @@ import { getThreads } from './utils.js'
 import router from './routes/routes.js'
 
 const server = express()
+// const utils = require('./utils')
 
 // Server configuration
 const publicFolder = Path.resolve('public')
