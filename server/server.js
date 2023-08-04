@@ -2,16 +2,14 @@ import * as Path from 'node:path'
 import express from 'express'
 import hbs from 'express-handlebars'
 
-import { getThreads } from './utils.js'
 import router from './routes/routes.js'
 
 const server = express()
-// const utils = require('./utils')
 
 // Server configuration
 const publicFolder = Path.resolve('public')
 server.use(express.static(publicFolder))
-server.use(express.urlencoded({ extended: false }))
+server.use(express.urlencoded({ extended: true }))
 
 // Handlebars configuration
 server.engine('hbs', hbs.engine({ extname: 'hbs' }))
@@ -19,7 +17,7 @@ server.set('view engine', 'hbs')
 server.set('views', Path.resolve('server/views'))
 
 // Your routes/router(s) should go here
-server.use('/', router)
+server.use('/threads', router)
 /// PSEUDO ///
 
 // THREADS OBJECT (its monolith time, baybeeee!!)
@@ -30,7 +28,9 @@ server.use('/', router)
 // BUTTON -> go to threads list ('/threads')
 // render('home') -- 'FIGMA SCREEN 1'
 
-
+server.get('/', (req, res) => {
+  res.render('home')
+})
 
 // THREADS ROUTER // 
 

@@ -1,29 +1,37 @@
 import express from 'express';
-import { read } from 'node:fs';
-import { readFile, writeFile } from 'node:fs/promises';
-import Path from 'node:path';
-import { getThreads } from '../utils.js';
+import { getThreads, updateData} from '../utils.js'
 
 const router = express.Router()
-// router.get('/', (req, res) => {
-//     res.render('home');
-// });
-
-// Home page
-
 
 router.get('/', async (req, res) => {
-    try {
-        const data = await getThreads()
-        res.render('home')
-    } catch (err) {
-        res.send(`This page is not working. Error: ${err}`)
-    }
+
+    const data = await getThreads()
+    const threadsArr = {threads: [...data.threads.map((thread) => {
+        thread.comments = thread.comments.length
+        return thread
+    })]}
+    res.render('threads', threadsArr)
 })
 
+router.post('/:id/addcomment', async (req, res) =>{
+    const id = Number(req.params.id)
+    const data = await getThreads()
+    const selectedThread = data.threads.find(thread => thread.id === id)
+    const comment = {
+        name: req.body.name,
+        date: new Date().toJSON(),
+        message: req.body.comment
+    }
+    selectedThread.comments.push(comment)
+    // Potential solution using "splice"
+    data.threads.splice(selectedThread.id -1, 1, selectedThread)
+    updateData(data)
+    
+    res.redirect(`/threads/${id}`)
+})
 
 // Thread homepage with all threads
-router.get('/threads/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const data = await getThreads()
         const id = Number(req.params.id)
