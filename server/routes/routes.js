@@ -1,8 +1,5 @@
 import express from 'express';
-import { read } from 'node:fs';
-import { readFile, writeFile } from 'node:fs/promises';
-import Path from 'node:path';
-import { getThreads } from '../utils.js'
+import { getThreads, updateData } from '../utils.js'
 
 const router = express.Router()
 
@@ -16,28 +13,22 @@ router.get('/', async (req, res) => {
     res.render('threads', threadsArr)
 })
 
-// router.post() => {
-    //read data
-    //Thread = get thread by ID
-    //Thread.comment.push(req.body.comment)
-    //data.threads[id-1].comments.push(req.body.comment)
-    //updateData(data)
-//}
-
-// threads = getThreads()
-// const selectedThread = threads.threads.find(thread => thread.id === id)
-const comment = {
-    name: req.body.name,
-    date: new Date().toJSON(),
-    message : req.body.message
-}
-// selectedThread.comments.push(comment)
-const threadsArr = {threads: [...data.threads.map((thread) => {
-    thread.id === selectedId 
-    ? {...thread, comments: []}
-    return thread
-})]}
-
+router.post('/:id/addcomment', async (req, res) =>{
+    const id = Number(req.params.id)
+    const data = await getThreads()
+    const selectedThread = data.threads.find(thread => thread.id === id)
+    const comment = {
+        name: req.body.name,
+        date: new Date().toJSON(),
+        message: req.body.comment
+    }
+    selectedThread.comments.push(comment)
+    // Potential solution using "splice"
+    data.threads.splice(selectedThread.id -1, 1, selectedThread)
+    updateData(data)
+    
+    // res.redirect(`/threads/${id}`)
+})
 
 
 export default router;
