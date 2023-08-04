@@ -58,7 +58,7 @@ vi.mocked(readFile).mockResolvedValue(
 
 describe('Reading data', () => {
   test('getThreads should initialize a read operation', async () => {
-    const threads = await getThreads()
+    await getThreads()
     expect(readFile).toHaveBeenCalledOnce()
   })
 
@@ -68,3 +68,12 @@ describe('Reading data', () => {
     expect(threads.threads.length).toBe(2)
   })
 })
+
+// read the data
+// clone and add the comment to arr
+// JSON stringify
+// rewrite the file (write file)
+
+// describe('Writing data', () => {
+
+// })

@@ -16,5 +16,28 @@ router.get('/', async (req, res) => {
     res.render('threads', threadsArr)
 })
 
+// router.post() => {
+    //read data
+    //Thread = get thread by ID
+    //Thread.comment.push(req.body.comment)
+    //data.threads[id-1].comments.push(req.body.comment)
+    //updateData(data)
+//}
+
+// threads = getThreads()
+// const selectedThread = threads.threads.find(thread => thread.id === id)
+const comment = {
+    name: req.body.name,
+    date: new Date().toJSON(),
+    message : req.body.message
+}
+// selectedThread.comments.push(comment)
+const threadsArr = {threads: [...data.threads.map((thread) => {
+    thread.id === selectedId 
+    ? {...thread, comments: []}
+    return thread
+})]}
+
+
 
 export default router;
