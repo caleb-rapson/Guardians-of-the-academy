@@ -1,16 +1,15 @@
 import express from 'express';
-import { getThreads, updateData } from '../utils.js'
+import { getThreads, updateData} from '../utils.js'
 
 const router = express.Router()
 
 router.get('/', async (req, res) => {
-    const data = await getThreads()
-    const threadsArr = {threads: [...data.threads.map((thread) => {
-        thread.comments = thread.comments.length
-        return thread
-    })]}
-    console.log(threadsArr)
-    res.render('threads', threadsArr)
+    try {
+        const data = await getThreads()
+        res.render('home')
+    } catch (err) {
+        res.send(`This page is not working. Error: ${err}`)
+    }
 })
 
 router.post('/:id/addcomment', async (req, res) =>{
@@ -30,5 +29,28 @@ router.post('/:id/addcomment', async (req, res) =>{
     // res.redirect(`/threads/${id}`)
 })
 
+// Thread homepage with all threads
+router.get('/threads/:id', async (req, res) => {
+    try {
+        const data = await getThreads()
+        const id = Number(req.params.id)
+        // getThreads()
+
+        const findThread = data.threads.find(element => element.id === id)
+        res.render('uniqthread', findThread)
+    } catch (err) {
+        res.send(`This page is not working. Error: ${err}`)
+    }
+})
+
+
+// Unique thread
+// router.get('/threads/:id', async (req, res) => {
+//     try {
+//         res.render('home')
+//     } catch (err) {
+//         res.send(`This page is not working. Error: ${err}`)
+//     }
+// })
 
 export default router;

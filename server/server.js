@@ -6,6 +6,7 @@ import { getThreads } from './utils.js'
 import router from './routes/routes.js'
 
 const server = express()
+// const utils = require('./utils')
 
 // Server configuration
 const publicFolder = Path.resolve('public')
@@ -18,7 +19,7 @@ server.set('view engine', 'hbs')
 server.set('views', Path.resolve('server/views'))
 
 // Your routes/router(s) should go here
-server.use('/threads', router)
+server.use('/', router)
 /// PSEUDO ///
 
 // THREADS OBJECT (its monolith time, baybeeee!!)
@@ -29,9 +30,7 @@ server.use('/threads', router)
 // BUTTON -> go to threads list ('/threads')
 // render('home') -- 'FIGMA SCREEN 1'
 
-server.get('/', (req, res) => {
-  res.render('home')
-})
+
 
 // THREADS ROUTER // 
 
