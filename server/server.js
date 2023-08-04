@@ -10,7 +10,7 @@ const server = express()
 // Server configuration
 const publicFolder = Path.resolve('public')
 server.use(express.static(publicFolder))
-server.use(express.urlencoded({ extended: false }))
+server.use(express.urlencoded({ extended: true }))
 
 // Handlebars configuration
 server.engine('hbs', hbs.engine({ extname: 'hbs' }))
