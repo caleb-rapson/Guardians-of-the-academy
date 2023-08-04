@@ -1,8 +1,6 @@
-import { expect, test, vi, describe, beforeAll } from 'vitest'
-import { render } from '../test-utils.js'
+import { expect, test, vi, describe} from 'vitest'
 import { readFile } from 'node:fs/promises'
 
-import request from 'supertest'
 
 import { getThreads } from '../server/utils.js'
 
