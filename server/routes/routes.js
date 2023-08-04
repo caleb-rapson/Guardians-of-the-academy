@@ -4,12 +4,13 @@ import { getThreads, updateData} from '../utils.js'
 const router = express.Router()
 
 router.get('/', async (req, res) => {
-    try {
-        const data = await getThreads()
-        res.render('home')
-    } catch (err) {
-        res.send(`This page is not working. Error: ${err}`)
-    }
+
+    const data = await getThreads()
+    const threadsArr = {threads: [...data.threads.map((thread) => {
+        thread.comments = thread.comments.length
+        return thread
+    })]}
+    res.render('threads', threadsArr)
 })
 
 router.post('/:id/addcomment', async (req, res) =>{
@@ -30,7 +31,7 @@ router.post('/:id/addcomment', async (req, res) =>{
 })
 
 // Thread homepage with all threads
-router.get('/threads/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const data = await getThreads()
         const id = Number(req.params.id)
