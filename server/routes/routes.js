@@ -27,7 +27,7 @@ router.post('/:id/addcomment', async (req, res) =>{
     data.threads.splice(selectedThread.id -1, 1, selectedThread)
     updateData(data)
     
-    // res.redirect(`/threads/${id}`)
+    res.redirect(`/threads/${id}`)
 })
 
 // Thread homepage with all threads
